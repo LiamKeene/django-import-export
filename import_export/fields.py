@@ -109,7 +109,8 @@ class Field(object):
             attrs = self.attribute.split('__')
             for attr in attrs[:-1]:
                 obj = getattr(obj, attr, None)
-            setattr(obj, attrs[-1], self.clean(data))
+            if obj is not None:
+                setattr(obj, attrs[-1], self.clean(data))
 
     def export(self, obj):
         """
